@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY BOT – Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#22e6c8;
+  --secondary:#6ff7ff;
+  --bg:#06090c;
+  --panel:#0c1318;
+  --text:#d6dde1;
+  --muted:#8a9aa5;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(900px 400px at top, #0b1e22, var(--bg));
+  font-family:Inter,Segoe UI,system-ui,sans-serif;
+  color:var(--text);
+  padding:30px 0;
+}
+
+.container{
+  width:92%;
+  max-width:900px;
+  margin:auto;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:30px;
+}
+.header h1{
+  font-size:36px;
+  font-weight:800;
+}
+.header span{color:var(--primary)}
+.header p{
+  margin-top:8px;
+  color:var(--muted);
+}
+
+.card{
+  background:linear-gradient(180deg,#111b21,#0a1014);
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  margin-bottom:26px;
+}
+
+.card h3{
+  margin-bottom:18px;
+  font-size:20px;
+  color:var(--primary);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.group label{
+  font-size:13px;
+  color:var(--muted);
+}
+.group input,
+.group select{
+  width:100%;
+  margin-top:6px;
+  padding:14px;
+  border-radius:10px;
+  background:#0f181e;
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--text);
+  font-size:14px;
+}
+
+.actions{
+  margin-top:22px;
+  display:flex;
+  gap:16px;
+}
+
+.btn{
+  flex:1;
+  padding:15px;
+  font-size:16px;
+  font-weight:600;
+  border-radius:50px;
+  cursor:pointer;
+  border:none;
+  transition:.25s ease;
+}
+
+.btn.free,
+.btn.paid{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#041417;
+  box-shadow:0 10px 30px rgba(34,230,200,.35);
+}
+.btn.free:hover,
+.btn.paid:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 45px rgba(34,230,200,.55);
+}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>ZEXISTEY <span>BOT</span> Dashboard</h1>
+    <p>Next-Gen Automation for Free Fire</p>
+  </div>
+
+  <!-- FREE -->
+  <div class="card">
+    <h3>FREE ACCESS</h3>
+
+    <div class="grid">
+      <div class="group">
+        <label>Guild UID (1–15)</label>
+        <input type="number" min="1" max="15">
+      </div>
+
+      <div class="group">
+        <label>Country</label>
+        <select>
+          <option>India</option><option>Indonesia</option><option>Brazil</option>
+          <option>Bangladesh</option><option>Pakistan</option><option>Thailand</option>
+          <option>Vietnam</option><option>Mexico</option><option>Russia</option>
+          <option>Malaysia</option>
+        </select>
+      </div>
+
+      <div class="group">
+        <label>Device Brand</label>
+        <select>
+          <option>Samsung</option><option>Apple</option><option>Xiaomi</option>
+          <option>Realme</option><option>Vivo</option><option>Oppo</option>
+          <option>OnePlus</option><option>Infinix</option><option>Tecno</option>
+          <option>Nokia</option><option>Motorola</option><option>Huawei</option>
+          <option>Honor</option><option>Asus</option><option>Lenovo</option>
+          <option>Google Pixel</option><option>Sony</option><option>LG</option>
+          <option>HTC</option><option>Micromax</option><option>Lava</option>
+          <option>Itel</option><option>iQOO</option><option>Nothing</option>
+          <option>Redmi</option><option>Poco</option><option>Meizu</option>
+          <option>ZTE</option><option>Alcatel</option><option>Panasonic</option>
+          <option>Sharp</option><option>TCL</option><option>BlackBerry</option>
+          <option>Gionee</option><option>Coolpad</option><option>LeEco</option>
+          <option>Karbonn</option><option>Spice</option><option>Intex</option>
+          <option>XOLO</option><option>YU</option><option>CAT</option>
+          <option>Fairphone</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn free" onclick="location.href='free.html'">FREE</button>
+    </div>
+  </div>
+
+  <!-- PAID -->
+  <div class="card">
+    <h3>PAID ACCESS</h3>
+
+    <div class="grid">
+      <div class="group">
+        <label>Guild UID (1–15)</label>
+        <input type="number" min="1" max="15">
+      </div>
+
+      <div class="group">
+        <label>Country</label>
+        <select>
+          <option>India</option><option>Indonesia</option><option>Brazil</option>
+          <option>Bangladesh</option><option>Pakistan</option><option>Thailand</option>
+          <option>Vietnam</option><option>Mexico</option><option>Russia</option>
+          <option>Malaysia</option>
+        </select>
+      </div>
+
+      <div class="group">
+        <label>Device Brand</label>
+        <select>
+          <!-- same 50+ list -->
+          <option>Samsung</option><option>Apple</option><option>Xiaomi</option>
+          <option>Realme</option><option>Vivo</option><option>Oppo</option>
+          <option>OnePlus</option><option>Infinix</option><option>Tecno</option>
+          <option>Nokia</option><option>Motorola</option><option>Huawei</option>
+          <option>Honor</option><option>Asus</option><option>Lenovo</option>
+          <option>Google Pixel</option><option>Sony</option><option>LG</option>
+          <option>HTC</option><option>Micromax</option><option>Lava</option>
+          <option>Itel</option><option>iQOO</option><option>Nothing</option>
+          <option>Redmi</option><option>Poco</option><option>Meizu</option>
+          <option>ZTE</option><option>Alcatel</option><option>Panasonic</option>
+          <option>Sharp</option><option>TCL</option><option>BlackBerry</option>
+          <option>Gionee</option><option>Coolpad</option><option>LeEco</option>
+          <option>Karbonn</option><option>Spice</option><option>Intex</option>
+          <option>XOLO</option><option>YU</option><option>CAT</option>
+          <option>Fairphone</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn paid" onclick="location.href='paid.html'">PAID</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
