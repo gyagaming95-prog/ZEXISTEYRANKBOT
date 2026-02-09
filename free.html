@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY BOT – Vote System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:#fff;
+}
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:20px;
+}
+h1,h2{
+  text-align:center;
+}
+.step{
+  background:#0b0b0b;
+  border-radius:14px;
+  padding:25px;
+  margin:25px 0;
+  position:relative;
+  box-shadow:0 0 25px rgba(0,255,136,0.08);
+}
+.step.completed{
+  border:2px solid #00ff88;
+}
+.tick{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:22px;
+  color:#00ff88;
+  display:none;
+}
+.step.completed .tick{display:block}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(60px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.animate{
+  animation:slideUp .6s ease forwards;
+}
+
+.vote-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+.vote-card{
+  background:#111;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+  border:2px solid transparent;
+}
+.vote-card:hover{
+  transform:translateY(-5px);
+}
+.vote-card.active{
+  border-color:#00ff88;
+  background:#141414;
+}
+
+button{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  background:#00ff88;
+  color:#000;
+  cursor:pointer;
+}
+button:hover{transform:scale(1.03)}
+
+.action-card{
+  background:#111;
+  padding:25px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:20px;
+}
+.action-card a{
+  text-decoration:none;
+}
+
+.upload-box{
+  border:2px dashed #00ff88;
+  padding:30px;
+  border-radius:14px;
+  text-align:center;
+  margin-top:20px;
+}
+input[type=file]{
+  margin-top:15px;
+  color:#fff;
+}
+
+.hidden{display:none}
+
+.congrats{
+  background:#00ff88;
+  color:#000;
+  padding:30px;
+  border-radius:14px;
+  text-align:center;
+  font-size:20px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🚀 ZEXISTEY BOT – FREE</h1>
+
+<!-- STEP 1 -->
+<div class="step animate" id="step1">
+  <div class="tick">✔</div>
+  <h2>STEP 1 – Choose Your BOT</h2>
+
+  <div class="vote-grid">
+    <div class="vote-card" onclick="selectVote(this,'Guild Glory Bot')">
+      🔥<br><b>Bot 2</b><br>Fox Bot
+    </div>
+    <div class="vote-card" onclick="selectVote(this,'Rank Push Bot')">
+      ⚡<br><b>BBt3</b><br>Rush Bot
+    </div>
+    <div class="vote-card" onclick="selectVote(this,'Diamond Bot')">
+      💎<br><b>Bot 3</b><br>Diamond Bot
+    </div>
+  </div>
+
+  <button onclick="completeStep1()">Continue</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="step hidden" id="step2">
+  <div class="tick">✔</div>
+  <h2>STEP 2 – YouTube Verification</h2>
+
+  <div class="action-card">
+    <p>Subscribe to unlock next step</p>
+    <a href="https://youtube.com/@zexistey?si=kXyiOocpF6qaTNAM" target="_blank">
+      <button>📺 Subscribe Channel</button>
+    </a>
+  </div>
+
+  <button onclick="completeStep2()">Continue</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="step hidden" id="step3">
+  <div class="tick">✔</div>
+  <h2>STEP 3 – Telegram Verification</h2>
+
+  <div class="action-card">
+    <p>Join Telegram to proceed</p>
+    <a href="https://t.me/Realzexi" target="_blank">
+      <button>🚀 Join Telegram</button>
+    </a>
+  </div>
+
+  <button onclick="completeStep3()">Continue</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="step hidden" id="step4">
+  <div class="tick">✔</div>
+  <h2>STEP 4 – Upload Activation File</h2>
+
+  <div class="upload-box">
+    <b>Upload Only:</b> ZEXISTEY.html<br><br>
+    <input type="file" id="fileUpload" accept="text/html">
+  </div>
+
+  <button onclick="completeStep4()">Finalize</button>
+</div>
+
+<!-- FINAL -->
+<div class="step hidden" id="finalStep">
+  <div class="congrats">
+    🎉 BOT ACTIVATED 🎉<br><br>
+    Selected BOT: <b id="finalVote"></b><br><br>
+    ⏳ Please return after <b>24 HOURS</b>
+  </div>
+</div>
+
+</div>
+
+<script>
+let selectedVote="";
+
+function selectVote(el,vote){
+  document.querySelectorAll(".vote-card").forEach(c=>c.classList.remove("active"));
+  el.classList.add("active");
+  selectedVote=vote;
+}
+
+function show(step){
+  step.classList.remove("hidden");
+  step.classList.add("animate");
+}
+
+function completeStep1(){
+  if(!selectedVote){alert("Select a bot");return;}
+  localStorage.vote=selectedVote;
+  step1.classList.add("completed");
+  show(step2);
+}
+
+function completeStep2(){
+  step2.classList.add("completed");
+  show(step3);
+}
+
+function completeStep3(){
+  step3.classList.add("completed");
+  show(step4);
+}
+
+function completeStep4(){
+  if(!fileUpload.files.length){alert("Upload file");return;}
+  if(!fileUpload.files[0].name.toLowerCase().includes("zexistey")){
+    alert("Only ZEXISTEY.html allowed");return;
+  }
+  step4.classList.add("completed");
+  document.getElementById("finalVote").innerText=localStorage.vote;
+  show(finalStep);
+}
+</script>
+
+</body>
+</html>
