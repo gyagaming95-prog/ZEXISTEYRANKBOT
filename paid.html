@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hypersonic Bot – Payment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#0f2027,#1c2a3a,#283844);
+  color:#fff;
+}
+.container{
+  max-width:600px;
+  margin:auto;
+  padding:30px;
+  text-align:center;
+  background:rgba(0,0,0,0.7);
+  border-radius:15px;
+  box-shadow:0 0 20px rgba(0,255,136,0.5);
+}
+h1{
+  margin-bottom:30px;
+  color:#00ff88;
+  text-shadow:0 0 10px #00ff88;
+}
+select,input{
+  width:100%;
+  padding:15px;
+  margin:12px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  background:#00ff88;
+  color:#000;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 10px #00ff88;
+}
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00ff88;
+}
+#qrcode{
+  margin:20px auto;
+  padding:10px;
+  background:#000;
+  display:inline-block;
+  border-radius:15px;
+  box-shadow:0 0 15px #00ff88;
+}
+.congrats{
+  background:#00ff88;
+  color:#000;
+  padding:30px;
+  border-radius:15px;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+  box-shadow:0 0 15px #00ff88;
+}
+.hidden{
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>💥 Hypersonic Bot – Payment & Activation 💥</h1>
+
+<!-- STEP 1: Bot Selection -->
+<div id="step1">
+  <label>Select Bot:</label>
+  <select id="botSelect">
+    <option value="Hypersonic Bot">Hypersonic Bot</option>
+  </select>
+  <button onclick="showPayment()">Proceed to Payment</button>
+</div>
+
+<!-- STEP 2: Payment + QR + UTR -->
+<div id="step2" class="hidden">
+  <h2>Step 2: Scan QR & Pay</h2>
+  <p>Scan QR to pay via UPI: <b>zexistey@fam</b></p>
+  <div id="qrcode"></div>
+  <label></label>
+  <input type="text" id="utr" placeholder="Enter your UTR number">
+  <button onclick="confirmPayment()">Submit Payment</button>
+</div>
+
+<!-- STEP 3: Final -->
+<div id="finalStep" class="hidden">
+  <div class="congrats">
+    🎉 PAYMENT SUCCESSFUL! 🎉<br>
+    Hypersonic Bot Activated ✅<br>
+    ⏳ Please come back after <b>24 HOURS</b>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+function showPayment(){
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+
+  // Updated UPI ID
+  var upiLink = "upi://pay?pa=8393073104@fam&pn=ZEXISTEY&am=199&cu=INR";
+  
+  new QRCode(document.getElementById("qrcode"), {
+      text: upiLink,
+      width: 220,
+      height: 220,
+      colorDark: "#00ff88",
+      colorLight: "#000000",
+      correctLevel: QRCode.CorrectLevel.H
+  });
+}
+
+function confirmPayment(){
+  var utr = document.getElementById('utr').value.trim();
+  if(utr===""){
+    alert("Please enter your UTR number");
+    return;
+  }
+  localStorage.setItem("utr",utr);
+  document.getElementById('step2').classList.add('hidden');
+  document.getElementById('finalStep').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
